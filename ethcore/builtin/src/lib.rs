@@ -32,7 +32,7 @@ use parity_bytes::BytesRef;
 use parity_crypto::digest;
 
 /// Native implementation of a built-in contract.
-trait Implementation: Send + Sync {
+pub trait Implementation: Send + Sync {
 	/// execute this built-in on the given input, writing to the given output.
 	fn execute(&self, input: &[u8], output: &mut BytesRef) -> Result<(), &'static str>;
 }
@@ -227,7 +227,7 @@ fn ethereum_builtin(name: &str) -> Box<dyn Implementation> {
 struct Identity;
 
 #[derive(Debug)]
-struct EcRecover;
+pub struct EcRecover;
 
 #[derive(Debug)]
 struct Sha256;
